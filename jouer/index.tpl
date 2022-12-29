@@ -21,18 +21,20 @@
         <nav id="navbar">
             <div class="nav-container">
                 <ul>
-                    <a href="">
+                    <a href="#">
                         <li>jouer</li>
                     </a>
-                    <a href="">
+                    <a href="../classement/classement.php">
                         <li>classement</li>
                     </a>
-                    <a href="">
-                        <li>contactez-nous</li>
-                    </a>
-                    <a href="">
-                        <li>se connecter</li>
-                    </a>
+                    <?php
+                        if(isset($_SESSION['id']) && $_SESSION['id'] != NULL) {
+
+                        echo '<a href="../profil/profil.php"><li>profil</li></a>';
+                        echo '<a href="../connexion/php/logout.php"><li>déconnexion</li></a>';
+                    } else {
+                        echo '<a href="../connexion/ident.php"><li>se connecter</li></a>';
+                    }  ?>
                 </ul>
             </div>
         </nav>
@@ -53,8 +55,14 @@
                 <h2>Villes de</h2>
                 <h1>France</h1>
                 <p>Localisez les villes.<br> Vous avez 10 secondes par ville.</p>
-                <button id="lancerAvecChrono">Jouer</button>
-                <button id="lancerSansChrono">Jouer sans chrono</button>
+                <?php 
+                    if(isset($_SESSION['id']) && $_SESSION['id'] != NULL) {
+                        echo '<button id="lancerAvecChrono">Jouer</button>';
+                        echo '<button id="lancerSansChrono">Jouer sans chrono</button>';
+                    } else {
+                        echo '<a href="../connexion/ident.php"><button id="seConnecter">Connectez-vous pour jouer</button></a>';
+                    }
+                ?>
             </div>
             <span id="recommencer"><i class="fa-solid fa-rotate-right"></i></span>
             <div id="popup">

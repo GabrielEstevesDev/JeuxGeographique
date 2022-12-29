@@ -1,0 +1,50 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+li{
+    list-style-type: none;
+}
+.nav-container{
+    background: grey;
+}
+#navbar {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    text-transform: uppercase;
+}
+#navbar img{
+    height: 50px;
+    padding: 5px 30px 5px 0;
+    
+}
+#navbar ul{
+    font-weight: 600;
+    color: white;
+     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#navbar li{
+    padding: 0 15px;
+    cursor: pointer;
+}
+
+#map{
+    height: 80%;
+    width: 80%;
+    margin: auto auto;
+}
+
+#form {
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 80px;
+}
+
+label, input {
+    margin: 10px;
+}

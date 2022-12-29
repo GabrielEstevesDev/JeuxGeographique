@@ -90,6 +90,7 @@ function montrerbtn() {
 //function avec requete ajax qui permet de récuperer les villes de la base de donner
 //puis appelle la fonction qui permet de récupérer les coordonnées des villes
 function recupVilles() {
+  var startDate = new Date();
   url = "./recupSQL.php";
   $.ajax({
     //requête web
@@ -104,6 +105,8 @@ function recupVilles() {
       for (var i = 0; i < ville.length; i++) {
         recupCoordVille(i);
       }
+      var endDate = new Date();
+      console.log((endDate.getTime() - startDate.getTime()) / 1000);
     },
     error: function () {
       alert("PB avec l'URL");

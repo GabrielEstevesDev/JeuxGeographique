@@ -1,0 +1,19 @@
+#navbar {
+    background: rgba(41, 152, 255, 0.67);
+  }
+  #navbar .nav-container {
+    width: 80%;
+    margin: 0 auto;
+  }
+  #navbar ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  #navbar ul li {
+    color: rgb(241, 179, 179);
+    padding: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+  }
