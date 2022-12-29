@@ -96,7 +96,7 @@ function askFriend($id,$friendId) {
 }
 
 function alreadyAsking($id,$friendId) {
-	require('../connectSQL.php');
+	require('../../connectSQL.php');
 	$sql="SELECT demandeAmis FROM `comptes` WHERE id = :id";
 	try {
 		$commande = $pdo->prepare($sql);

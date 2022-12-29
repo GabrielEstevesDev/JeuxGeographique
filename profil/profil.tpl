@@ -3,8 +3,8 @@
 <meta charset="UTF-8">
 <head>
 <title>PROJET WEB</title>
-<link rel="stylesheet" href="./profil.css">
-<link rel="stylesheet" href="../connexion/Css/Nav.css">
+<link rel="stylesheet" href="./Css/profil.css">
+<link rel="stylesheet" href="../nav.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
         integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
@@ -97,15 +97,13 @@
                 <div><?php echo $msgFriend ?></div>
             </form>
             <?php
-                if (count($requetes) != 0) {
+                if ($requetes != NULL) {
                     echo ("<br><h2>Requêtes d'amis</h2><br>");
                     echo ('<table>');
                     echo ('<tr><th>PSEUDO</th><th> </th><th> </th></tr>');
                     foreach ($requetes as $u) {
                         $log = $u[0]['login'];
                         $fid = $u[0]['id'];
-                        echo($fid);
-                        var_dump($fid);
                         echo "<tr class='requetes' id='req$fid'>";
                         echo ("<td><div>$log</div></td>");
                         echo ("<td><div class='reqAccepter' name='$fid'>Accepter</div></td>");

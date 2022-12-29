@@ -26,8 +26,8 @@ td {font-size: 14px;
     width : 5em;
     border:  1px solid rgb(159, 43, 161) ;
     color: rgb(159, 43, 161);
+    background: rgb(246, 227, 191);
 }
-td:hover {background-color: #fff;}
 
 th {
     font-size: 17px;

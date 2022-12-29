@@ -27,9 +27,7 @@
 	    	$msg = "Vous êtes connectés";
 			$_SESSION['id'] = $resId;
 			$_SESSION['login'] = $login;
-
-			require("../profil/profil.php");
-			$url = "profil.php";
+			$url = "../profil/profil.php";
 			header("Location:" . $url) ;
 		}
 	}	

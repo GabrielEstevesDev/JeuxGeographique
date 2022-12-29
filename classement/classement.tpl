@@ -1,19 +1,25 @@
 <!DOCTYPE HTML>
 <html lang="fr">
 <meta charset="UTF-8">
-<head>
-<title>PROJET WEB</title>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<link href="./classement.css" rel="stylesheet">
-<link rel="stylesheet" href="../connexion/Css/Nav.css">
+<head>
+    <title>PROJET WEB</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+        integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link href="./classement.css" rel="stylesheet">
+    <link rel="stylesheet" href="../nav.css">
 </head>
+
 <body>
     <header>
         <nav id="navbar">
             <div class="nav-container">
                 <ul>
-                    <a href="../jouer/index.php"><li>jouer</li></a>
+                    <a href="../jouer/index.php">
+                        <li>jouer</li>
+                    </a>
                     <a href="">
                         <li>classement</li>
                     </a>
@@ -48,7 +54,7 @@
         </table>
         <br><br><br><br><br>
         <h1 class="Titre">Classement par score total</h1>
-        <table  class="classement">
+        <table class="classement">
             <tr>
                 <th>PSEUDO</th>
                 <th>SCORE TOTAL</th>
@@ -66,4 +72,5 @@
         </table>
     </div>
 </body>
+
 </html>
