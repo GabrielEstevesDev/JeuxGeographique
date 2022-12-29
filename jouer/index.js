@@ -5,7 +5,6 @@ var mark3; // marqueur de la ville
 var map; // map du jeu
 var popup; // div qui contient les messages entre les manches
 var ville; // tableau des villes du jeu qui contient leur noms, sources des images.
-var tabCoord; // tableau qui contient les coordonnées des villes
 var random; // index de la ville choisi pour la manche courante
 var nbVilles; // nombres totale de villes pour la partie
 var btnPopup; // bouton de la popup qui permet de passer aux manches suivantes
@@ -87,10 +86,8 @@ function montrerbtn() {
   recommencer.style.display = "block";
   recommencer.addEventListener("click", btnPopupRejouer);
 }
-//function avec requete ajax qui permet de récuperer les villes de la base de donner
-//puis appelle la fonction qui permet de récupérer les coordonnées des villes
+// fonction qui permet de récupérer les coordonnées des villes avec une
 function recupVilles() {
-  var startDate = new Date();
   url = "./recupSQL.php";
   $.ajax({
     //requête web
@@ -101,12 +98,6 @@ function recupVilles() {
     success: function (retour) {
       ville = retour;
       nbVilles = ville.length;
-      tabCoord = new Array();
-      for (var i = 0; i < ville.length; i++) {
-        recupCoordVille(i);
-      }
-      var endDate = new Date();
-      console.log((endDate.getTime() - startDate.getTime()) / 1000);
     },
     error: function () {
       alert("PB avec l'URL");
@@ -114,10 +105,11 @@ function recupVilles() {
   });
 }
 //function qui permet de stocker la longitude et la lagitude de chaques villes avec leur noms avec une api
-function recupCoordVille(i) {
+function recupCoordVille(nomVille) {
+  var ville;
   url =
     "https://nominatim.openstreetmap.org/search?q=" +
-    ville[i].nom +
+    nomVille +
     "&format=json&polygon_geojson=1&addressdetails=1";
   $.ajax({
     //requête web
@@ -126,16 +118,16 @@ function recupCoordVille(i) {
     dataType: "json",
     url: url,
     success: function (retour) {
-      let ville = {
+      ville = {
         lon: retour[0].lon,
         lat: retour[0].lat,
       };
-      tabCoord[i] = ville;
     },
     error: function () {
       alert("PB avec l'URL");
     },
   });
+  return ville;
 }
 
 function jouer() {
@@ -187,13 +179,15 @@ function clickMap(e) {
     //on place le premier marker sur le click
     draggable: false,
   }).addTo(map);
+  var coordVille = recupCoordVille(ville[random].nom); //coord gps de la ville choisi
   var dist = getDistanceFromLatLonInKm(
     //calcul de la distance entre les deux marqueurs
     e.latlng.lat,
     e.latlng.lng,
-    tabCoord[random].lat,
-    tabCoord[random].lon
+    coordVille.lat,
+    coordVille.lon
   );
+  console.log("dist " + dist);
   setTimeout(function () {
     //après une demi-seconde on place le marqueur de la ville et on dessine le cercle
     mark2 = L.circle([e.latlng.lat, e.latlng.lng], dist * 1000, {
@@ -202,7 +196,7 @@ function clickMap(e) {
       weight: 5,
       fillColor: "rgb(159, 43, 161)",
     }).addTo(map);
-    mark3 = L.marker([tabCoord[random].lat, tabCoord[random].lon], {
+    mark3 = L.marker([coordVille.lat, coordVille.lon], {
       draggable: false,
     }).addTo(map);
   }, 500);
@@ -252,7 +246,6 @@ function btnPopupContinuer(e) {
   if (AJouer == 1) e.stopPropagation(); //on stoppe le bouillonement uniquement si la fonction a été appelé par le click du bouton
   removeLayer(); //on supprime les markers posés
   ville.splice(random, 1); //on supprime la ville des tableaux pour qu'elle ne passe qu'une seul fois
-  tabCoord.splice(random, 1);
   popup.style.display = "none";
   jouer();
 }
@@ -273,6 +266,8 @@ function finJeu() {
     pointsPartie +
     " points durant cette partie";
   btnPopup.textContent = "REJOUER";
+  envoyerMeilleurScore();
+  envoyerScoreTotal();
 }
 function btnPopupRejouer(e) {
   e.stopPropagation(); //on stoppe le bouilonnement des evenements
@@ -300,4 +295,42 @@ function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
 
 function deg2rad(deg) {
   return deg * (Math.PI / 180);
+}
+
+function envoyerMeilleurScore() {
+  var url = "./recupMeilleurScore.php";
+  var data = { points: pointsPartie };
+  $.ajax({
+    //requête web
+    async: false,
+    type: "POST",
+    data: data,
+    dataType: "text",
+    url: url,
+    success: function (retour) {
+      console.log("success");
+      // console.log(retour);
+      // console.log(data);
+      console.log(retour);
+    },
+    error: function () {
+      alert("PB avec l'URL");
+    },
+  });
+}
+function envoyerScoreTotal() {
+  var url = "./recupScoreTotal.php";
+  var data = { pointsTotal: pointsPartie };
+  $.ajax({
+    //requête web
+    async: false,
+    type: "POST",
+    data: data,
+    dataType: "text",
+    url: url,
+    success: function () {},
+    error: function () {
+      alert("PB avec l'URL");
+    },
+  });
 }

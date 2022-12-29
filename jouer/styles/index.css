@@ -21,7 +21,7 @@ body {
 .jeuContainer {
   width: 70%;
   margin: 30px auto;
-  padding: 25px 60px;
+  padding: 40px 60px;
   border: 1px solid black;
   border-radius: 30px;
   position: relative;
@@ -86,7 +86,7 @@ body {
 }
 .jeuContainer #map {
   position: relative;
-  height: 90%;
+  height: 70%;
   z-index: 1;
   margin: auto auto;
   border-radius: 30px;
@@ -99,6 +99,16 @@ body {
 @media screen and (max-width: 780px) {
   .jeuContainer #map {
     height: 50%;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .jeuContainer #map {
+    width: 70%;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .jeuContainer #map {
+    width: 100%;
   }
 }
 .jeuContainer #map #accueilJeu {
@@ -162,7 +172,8 @@ body {
     font-size: 1.7rem;
   }
 }
-.jeuContainer #map #accueilJeu #lancerSansChrono {
+.jeuContainer #map #accueilJeu #lancerSansChrono,
+.jeuContainer #map #accueilJeu #seConnecter {
   padding: 10px 30px;
   font-size: 1.5rem;
   font-weight: 700;
@@ -170,7 +181,8 @@ body {
   border: none;
 }
 @media screen and (max-width: 730px) {
-  .jeuContainer #map #accueilJeu #lancerSansChrono {
+  .jeuContainer #map #accueilJeu #lancerSansChrono,
+.jeuContainer #map #accueilJeu #seConnecter {
     padding: 7px 20px;
     font-size: 1rem;
   }

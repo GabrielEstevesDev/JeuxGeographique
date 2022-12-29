@@ -1,7 +1,7 @@
 .jeuContainer {
   width: 70%;
   margin: 30px auto;
-  padding: 25px 60px;
+  padding: 40px 60px;
   border: 1px solid black;
   border-radius: 30px;
   position: relative;
@@ -66,7 +66,7 @@
   }
   #map {
     position: relative;
-    height: 90%;
+    height: 70%;
     z-index: 1;
     margin: auto auto;
     border-radius: 30px;
@@ -77,6 +77,12 @@
     box-shadow: 0px 0px 22px 8px #673ab7;
     @media screen and (max-width: 780px) {
       height: 50%;
+    }
+    @media screen and (min-width: 1200px) {
+      width: 70%;
+    }
+    @media screen and (max-width: 1200px) {
+      width: 100%;
     }
     #accueilJeu {
       width: 60%;
@@ -130,7 +136,8 @@
           font-size: 1.7rem;
         }
       }
-      #lancerSansChrono {
+      #lancerSansChrono,
+      #seConnecter {
         padding: 10px 30px;
         font-size: 1.5rem;
         font-weight: 700;
