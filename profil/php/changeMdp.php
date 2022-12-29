@@ -7,7 +7,7 @@
 $id = isset($_SESSION['id'])?($_SESSION['id']):NULL;
 
 if($id == NULL) {
-	header("Location: ../ident.php");
+	header("Location: ../../ident.php");
 }
 
 	$exmdp = isset($_POST['exmdp'])?($_POST['exmdp']):'';
@@ -23,7 +23,7 @@ if($id == NULL) {
 	}
 
 	function verifMdp($id, $mdp) {
-		require('../connectSQL.php'); //$pdo est défini dans ce fichier
+		require('../../connectSQL.php'); //$pdo est défini dans ce fichier
 		$sql="SELECT samePassword(:id,:mdp) FROM `comptes`";
 		try {
 			$commande = $pdo->prepare($sql);
@@ -51,7 +51,7 @@ if($id == NULL) {
 	}
 
 	function changeMdp($id,$mdp) {
-		require('../connectSQL.php'); //$pdo est défini dans ce fichier
+		require('../../connectSQL.php'); //$pdo est défini dans ce fichier
 		$sql="CALL updateMdp(:id,:mdp)";
 		try {
 			$commande = $pdo->prepare($sql);

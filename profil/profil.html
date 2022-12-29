@@ -72,25 +72,27 @@
             
             <br><?php
                 if (count($amis) != 0) {
-                    echo ("<h2>Voici la liste de vos amis :</h2><br>");
+                    echo ("<h2>Voici la liste de vos amis :</h2><br/>");
                     echo ('<table id="TableAmis">');
+                    <div class="container">
                     echo ('<tr><th> PSEUDO </th> <th> MAIL </th> <th> SCORE TOTAL </th> <th> MEILLEUR SCORE </th> <th> SUPPRIMER </th></tr>');
                     foreach ($amis as $u) {
                         $fid = $u[0]['id'];
                         echo "<tr class='contact' id='ami$fid'>";
-                        echo ("<td> <div class='td'>" . utf8_encode($u[0]['login']) . "</div></td>");
-                        echo ("<td> <div class='td'>" . utf8_encode($u[0]['email']) . "</div></td>");
-                        echo ("<td> <div class='td'>" . utf8_encode($u[0]['scoreTotal']) . "</div></td>");
-                        echo ("<td> <div class='td'>" . utf8_encode($u[0]['meilleurScore']) . "</div></td>");
+                        echo ("<td> <div class="td">" . utf8_encode($u[0]['login']) . "</div></td>");
+                        echo ("<td> <div class="td">" . utf8_encode($u[0]['email']) . "</div></td>");
+                        echo ("<td> <div class="td">" . utf8_encode($u[0]['scoreTotal']) . "</div></td>");
+                        echo ("<td> <div class="td">" . utf8_encode($u[0]['meilleurScore']) . "</div></td>");
                         echo ("<td><div class='supprimer' name='$fid'>Supprimer</div></td>");
                         echo "</tr>";
                     }
+                </div>
                     echo ('</table>');
                 } else echo ("Vous n'avez pas encore ajouté d'amis");
             ?>
             <br>
             <h1 class="Titre">Demande d'amis</h1><br>
-            <form class="form" id="Demandeamis" action="php/askFriend.php" method="post">
+            <form class="form" action="php/askFriend.php" method="post">
                 <label for="friend">Ajouter un ami</label><br>
                 <input type="text" id="friend" name="friend" value="">
                 <input class="BtnInput" type="submit" value="Ajouter" id="addFriend">
@@ -104,8 +106,6 @@
                     foreach ($requetes as $u) {
                         $log = $u[0]['login'];
                         $fid = $u[0]['id'];
-                        echo($fid);
-                        var_dump($fid);
                         echo "<tr class='requetes' id='req$fid'>";
                         echo ("<td><div>$log</div></td>");
                         echo ("<td><div class='reqAccepter' name='$fid'>Accepter</div></td>");

@@ -7,7 +7,7 @@ if(!isset($_SESSION))
 $id = isset($_SESSION['id'])?($_SESSION['id']):NULL;
 
 if($id == NULL) {
-	header("Location: ../ident.php");
+	header("Location: ../../ident.php");
 }
 
 $login =  isset($_POST['friend'])?($_POST['friend']):'';
@@ -38,7 +38,7 @@ if(areFriends($amis,$login,$friendId)) {
 header("Location: ../profil.php");
 
 function getFriend($login) {
-	require('../connectSQL.php'); //$pdo est défini dans ce fichier
+	require('../../connectSQL.php'); //$pdo est défini dans ce fichier
 		$sql="SELECT getIdByLogin(:login) FROM `comptes`";
 		try {
 			$commande = $pdo->prepare($sql);
@@ -62,7 +62,7 @@ function areFriends($amis,$login,$friendId) {
 }
 
 function askFriend($id,$friendId) {
-	require('../connectSQL.php');
+	require('../../connectSQL.php');
 	$sql="SELECT demandeAmis FROM `comptes` WHERE id = :id";
 	try {
 		$commande = $pdo->prepare($sql);

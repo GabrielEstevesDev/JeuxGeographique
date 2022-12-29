@@ -7,7 +7,7 @@ if(!isset($_SESSION))
 $id = isset($_SESSION['id'])?($_SESSION['id']):NULL;
 
 if($id == NULL) {
-	header("Location: ../ident.php");
+	header("Location: ../../ident.php");
 }
 
 $friendId = isset($_POST['fid'])?($_POST['fid']):NULL;
@@ -16,7 +16,7 @@ removeFriend($friendId, $id);
 echo json_encode((int)$friendId);
 
 function removeFriend($id,$friendId) {
-	require('../connectSQL.php');
+	require('../../connectSQL.php');
 	$sql="SELECT amis FROM `comptes` WHERE id = :id";
 	try {
 		$commande = $pdo->prepare($sql);

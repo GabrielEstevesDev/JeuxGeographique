@@ -7,7 +7,7 @@
 $id = isset($_SESSION['id'])?($_SESSION['id']):NULL;
 
 if($id == NULL) {
-	header("Location: ../ident.php");
+	header("Location: ../../ident.php");
 }
 
 	$email = isset($_POST['mail'])?($_POST['mail']):'';
@@ -22,7 +22,7 @@ if($id == NULL) {
 	header("Location: ../profil.php");
 
 	function verifMail($email) {
-		require('../connectSQL.php'); //$pdo est défini dans ce fichier
+		require('../../connectSQL.php'); //$pdo est défini dans ce fichier
 		$sql="SELECT emailExists(:mail) FROM `comptes`";
 		try {
 			$commande = $pdo->prepare($sql);

@@ -1,0 +1,144 @@
+*{  margin:0;padding:0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman", Georgia, Serif';
+    font-size : 12pt;
+    }
+
+
+section{
+    color: rgb(159, 43, 161) ;
+    text-align: center;
+    width: 50%;
+    margin: 30px auto;
+    padding: 25px 60px;
+    border: 1px solid black;
+    border-radius: 30px;
+    position: relative;
+    border: none;
+    box-shadow: 0px 0px 22px 8px rgb(159, 43, 161);
+}
+body {
+    background: wheat;
+  }
+
+table {
+    width: 100%;
+    margin: 30px auto;
+    padding: 25px 60px;
+    border: 1px solid black;
+    border-radius: 30px;
+    position: relative;
+    border: none;
+    box-shadow: 0px 0px 22px 8px rgb(159, 43, 161);
+}
+
+tr.contact:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+tr.contact:nth-child(even) {
+    background-color: #ddd;
+}
+
+td {
+    line-height: 20px;
+    padding: 5px;
+    width : 5em;
+    border:  1px solid rgb(159, 43, 161) ;
+    color: rgb(159, 43, 161);
+}
+
+td:hover {background-color: #fff;}
+
+th {font-size: 100%;
+    line-height: 20px;
+    width : 5em;
+    text-align: left;
+    color: rgb(159, 43, 161);
+}
+
+.Titre{
+    text-align: center;
+    width: 60%;
+    margin : 0 auto;
+    font-size: 2rem;
+    color: rgb(159, 43, 161);
+    padding-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.BtnInput{
+    color: rgb(159, 43, 161);
+    border-radius: 30px;
+    padding: 10px;
+    border: 1px solid #e3e3e3;
+    background: wheat; 
+    box-shadow: 0px 0px 22px 4px rgb(159, 43, 161);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+.form{
+    text-align: center;
+    width: 50%;
+    margin: 30px auto;
+    padding: 25px 60px;
+    border: 1px solid black;
+    border-radius: 30px;
+    position: relative;
+    border: none;
+    box-shadow: 0px 0px 22px 8px rgb(159, 43, 161);
+}
+
+input{
+    margin: 10px;
+    border: 1px solid rgb(159, 43, 161);
+    padding: 5px;
+}
+.container{
+    max-width: 100%;
+}
+.td{
+   font-size: 1rem ;
+}
+.supprimer{
+    font-size: 1rem;
+}
+th{
+    font-size: 1rem;
+}
+
+@media screen and (max-width: 600px) {
+    input{
+        width: 80%;
+    }
+    .Titre{
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    .td{
+        font-size: 0.8rem ;
+     }
+     .supprimer{
+         font-size: 0.8rem;
+     }
+     th{
+         font-size: 0.8rem;
+     }
+     section{
+        width: 80%;
+     }
+     #Demandeamis{
+        width: 70%;
+     }
+}
+@media screen and (max-width: 700px) {
+
+    section{
+       width: 100%;
+    }
+}
+
+
