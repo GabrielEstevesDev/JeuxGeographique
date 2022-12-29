@@ -17,7 +17,7 @@ function init() {
   var txtAnim = document.getElementById("title");
 
   var typewriter = new Typewriter(txtAnim, {
-    delay: 20,
+    delay: 0,
   });
 
   typewriter.typeString("Bienvenue sur notre jeu géographique !").start();
@@ -164,12 +164,9 @@ function jauge() {
   const containerProgressBar = document.getElementById("containerProgressBar");
   containerProgressBar.style.display = "block"; //on affiche
   progressBar.style.width = "100%";
-  progressBar.style.background = "yellow"; //au début elle est jaune
   const changeWidth = function (i) {
     if (AJouer == 0) {
       progressBar.style.width = i + "%";
-      if (i == 60) progressBar.style.background = "orange";
-      if (i == 30) progressBar.style.background = "red";
       if (i == 0) btnPopupContinuer();
     }
   };
