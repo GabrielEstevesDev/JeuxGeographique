@@ -1,6 +1,15 @@
+@font-face {
+  font-family: "InterM";
+  src: url(../../fonts/Inter-Medium.ttf);
+}
+$font1: "InterM", serif;
+$color1: wheat;
+$color2: rgb(159, 43, 161);
+
 * {
   padding: 0;
   margin: 0;
+  font-family: $font1;
 }
 
 li,
@@ -10,5 +19,5 @@ a {
 }
 
 body {
-  background: rgb(241, 179, 179);
+  background: $color1;
 }

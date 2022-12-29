@@ -1,105 +1,180 @@
-.map {
-  padding: 50px 0;
+@font-face {
+  font-family: "InterM";
+  src: url(../../fonts/Inter-Medium.ttf);
+}
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "InterM", serif;
+}
+
+li,
+a {
+  list-style-type: none;
+  text-decoration: none;
+}
+
+body {
+  background: wheat;
+}
+
+.jeuContainer {
   width: 70%;
   margin: 30px auto;
-  padding: 50px;
+  padding: 25px 60px;
   border: 1px solid black;
   border-radius: 30px;
   position: relative;
-  box-shadow: 0px 0px 22px 8px rgba(41, 152, 255, 0.67);
+  border: none;
+  box-shadow: 0px 0px 22px 8px rgb(159, 43, 161);
 }
-.map .title {
+@media screen and (max-width: 730px) {
+  .jeuContainer {
+    padding: 25px;
+  }
+}
+.jeuContainer #title {
   text-align: center;
-  color: rgba(41, 152, 255, 0.67);
+  color: rgb(159, 43, 161);
   letter-spacing: 2px;
   font-weight: 600;
   padding: 10px 0;
+  font-size: 2rem;
   text-transform: uppercase;
 }
-.map .stat {
+@media screen and (max-width: 1000px) {
+  .jeuContainer #title {
+    font-size: 1.5rem;
+  }
+}
+@media screen and (max-width: 780px) {
+  .jeuContainer #title {
+    font-size: 1.2rem;
+  }
+}
+.jeuContainer .infosParties {
   display: flex;
   position: relative;
+  color: rgb(159, 43, 161);
 }
-.map .stat #nomVille {
+.jeuContainer .infosParties #nomVille {
   margin-left: 20px;
   margin-bottom: 15px;
   text-transform: uppercase;
   font-weight: 600;
   letter-spacing: 2px;
 }
-.map .stat #points {
+.jeuContainer .infosParties #points {
   position: absolute;
   right: 0;
 }
-.map #file-container {
-  margin: 0 auto;
-}
-.map #file-container #file {
+.jeuContainer #containerProgressBar {
   display: none;
+  background: white;
   width: 100%;
-  height: 15px;
-  color: orange;
-  border-color: black;
-  border-radius: 15px;
+  height: 20px;
+  border-radius: 30px;
+  margin-bottom: 10px;
+  box-shadow: 0px 3px 83px 8px rgb(0, 0, 0);
 }
-.map #map {
+.jeuContainer #containerProgressBar #progressBar {
+  border-radius: 30px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(243, 243, 39, 0.865);
+}
+.jeuContainer #map {
   position: relative;
   height: 90%;
   z-index: 1;
   margin: auto auto;
   border-radius: 30px;
-  background: rgba(41, 152, 255, 0.67);
+  background: rgb(159, 43, 161);
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0px 0px 22px 8px #673ab7;
 }
-.map #map #map-container {
+@media screen and (max-width: 780px) {
+  .jeuContainer #map {
+    height: 50%;
+  }
+}
+.jeuContainer #map #accueilJeu {
   width: 60%;
   margin: 0 auto;
-  color: white;
+  color: wheat;
 }
-.map #map #map-container .container h2 {
+.jeuContainer #map #accueilJeu h2 {
   text-align: center;
 }
-.map #map #map-container .container h1 {
+@media screen and (max-width: 780px) {
+  .jeuContainer #map #accueilJeu h2 {
+    font-size: 1rem;
+  }
+}
+.jeuContainer #map #accueilJeu h1 {
   text-transform: uppercase;
   text-align: center;
   font-size: 4rem;
   font-weight: 700;
 }
-.map #map #map-container .container p {
+@media screen and (max-width: 780px) {
+  .jeuContainer #map #accueilJeu h1 {
+    font-size: 2rem;
+  }
+}
+.jeuContainer #map #accueilJeu p {
   padding: 80px 0 30px;
   text-align: center;
   font-size: 1.4rem;
 }
-.map #map #map-container .container button {
+@media screen and (max-width: 780px) {
+  .jeuContainer #map #accueilJeu p {
+    padding: 30px 10px;
+    font-size: 0.9rem;
+  }
+}
+.jeuContainer #map #accueilJeu button {
   cursor: pointer;
-  color: rgb(140, 71, 0);
+  color: rgb(159, 43, 161);
   background: rgb(255, 224, 54);
   display: block;
   margin: 0 auto;
   margin-bottom: 10px;
   transition: 0.4s ease-in-out;
 }
-.map #map #map-container .container button:hover {
+.jeuContainer #map #accueilJeu button:hover {
   transform: scale(1.05);
   background: rgb(248, 236, 165);
 }
-.map #map #map-container .container #lancerAvecChrono {
+.jeuContainer #map #accueilJeu #lancerAvecChrono {
   padding: 10px 80px;
   font-size: 2.4rem;
   font-weight: 800;
   border-radius: 60px;
   border: none;
 }
-.map #map #map-container .container #lancerSansChrono {
+@media screen and (max-width: 730px) {
+  .jeuContainer #map #accueilJeu #lancerAvecChrono {
+    padding: 8px 60px;
+    font-size: 1.7rem;
+  }
+}
+.jeuContainer #map #accueilJeu #lancerSansChrono {
   padding: 10px 30px;
   font-size: 1.5rem;
   font-weight: 700;
   border-radius: 60px;
   border: none;
 }
-.map #map span {
+@media screen and (max-width: 730px) {
+  .jeuContainer #map #accueilJeu #lancerSansChrono {
+    padding: 7px 20px;
+    font-size: 1rem;
+  }
+}
+.jeuContainer #map span {
   position: absolute;
   right: 0;
   top: 0;
@@ -111,10 +186,10 @@
   cursor: pointer;
   transition: 0.4s ease-in-out;
 }
-.map #map span:hover {
+.jeuContainer #map span:hover {
   transform: scale(1.1);
 }
-.map #map #popup {
+.jeuContainer #map #popup {
   position: absolute !important;
   display: none;
   text-align: center;
@@ -129,19 +204,25 @@
   transition: 2s ease-in-out;
   border-radius: 25px;
   letter-spacing: 2px;
-  color: rgba(41, 152, 255, 0.67);
-  background: rgb(241, 179, 179);
+  color: wheat;
+  background: rgb(159, 43, 161);
 }
-.map #map #popup img {
+@media screen and (max-width: 780px) {
+  .jeuContainer #map #popup h1,
+.jeuContainer #map #popup h2 {
+    font-size: 0.8rem;
+  }
+}
+.jeuContainer #map #popup img {
   height: 90%;
   width: 90%;
   padding: 10px;
 }
-.map #map #popup button {
+.jeuContainer #map #popup button {
   margin: 10px;
   padding: 10px 20px;
-  color: rgb(241, 179, 179);
-  background: rgba(41, 152, 255, 0.67);
+  color: rgb(159, 43, 161);
+  background: wheat;
   font-size: 1.5rem;
   font-weight: 700;
   transition: 0.4s ease-in-out;
@@ -149,47 +230,66 @@
   border: none;
   cursor: pointer;
 }
-.map #map #popup button:hover {
+.jeuContainer #map #popup button:hover {
   transform: scale(1.05);
-  background: rgba(41, 152, 255, 0.813);
+}
+@media screen and (max-width: 780px) {
+  .jeuContainer #map #popup button {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 5px;
+    padding: 5px 10;
+  }
 }
 
 #navbar {
-  background: rgba(41, 152, 255, 0.67);
+  background: rgb(159, 43, 161);
 }
 
 #navbar .nav-container {
   width: 80%;
   margin: 0 auto;
 }
+@media screen and (max-width: 830px) {
+  #navbar .nav-container {
+    width: 85%;
+  }
+}
+@media screen and (max-width: 700px) {
+  #navbar .nav-container {
+    width: 95%;
+  }
+}
 
 #navbar ul {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 
 #navbar ul li {
-  color: rgb(241, 179, 179);
+  color: wheat;
   padding: 15px;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 600;
+  transition: 0.4s;
 }
-
-* {
-  padding: 0;
-  margin: 0;
+#navbar ul li:hover {
+  color: rgb(159, 43, 161);
+  background: wheat;
 }
-
-li,
-a {
-  list-style-type: none;
-  text-decoration: none;
+@media screen and (max-width: 830px) {
+  #navbar ul li {
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 10px;
+  }
 }
-
-body {
-  background: rgb(241, 179, 179);
+@media screen and (max-width: 700px) {
+  #navbar ul li {
+    font-size: 0.8rem;
+  }
 }
 
 /*# sourceMappingURL=index.css.map *//*# sourceMappingURL=index.css.map */

@@ -1,54 +1,54 @@
 window.addEventListener("load", init);
-var mark1;
-var mark2;
-var mark3;
-var points = 0;
-var nomVille;
-var map;
-var base;
-var popup;
-var monMarqueur;
-var bool = true;
-var html;
-var popup;
-var msg;
-var monPopup;
-var ville;
-var lon, lat;
-var tabCoord = new Array();
-var random;
-var tailleVille;
-var btnPopup;
+var mark1; // marqueur placé par le joueur
+var mark2; // cercle entre les 2 marqueurs
+var mark3; // marqueur de la ville
+var map; // map du jeu
+var popup; // div qui contient les messages entre les manches
+var ville; // tableau des villes du jeu qui contient leur noms, sources des images.
+var tabCoord; // tableau qui contient les coordonnées des villes
+var random; // index de la ville choisi pour la manche courante
+var nbVilles; // nombres totale de villes pour la partie
+var btnPopup; // bouton de la popup qui permet de passer aux manches suivantes
 var pointsPartie;
-var MancheJouer;
-var BtnJouer;
-var BtnJouerSansChrono;
-var BoolChrono;
+var AJouer; //boolean pour savoir si le joueur a jouer la manche
+var AChrono; //boolean pour savoir si la parti est lancé avec le chrono
+var id; //id qui permet de clear les appels du setIntervall de la progressBar entre les manches
 function init() {
-  msg = document.getElementById("msg");
+  var txtAnim = document.getElementById("title");
+
+  var typewriter = new Typewriter(txtAnim, {
+    delay: 20,
+  });
+
+  typewriter.typeString("Bienvenue sur notre jeu géographique !").start();
+
   popup = document.getElementById("popup");
-  nomVille = document.getElementById("nomVille");
   btnPopup = document.getElementById("btn");
-  BtnJouer = document.getElementById("lancerAvecChrono");
-  BtnJouerSansChrono = document.getElementById("lancerSansChrono");
+  var BtnJouer = document.getElementById("lancerAvecChrono");
+  var BtnJouerSansChrono = document.getElementById("lancerSansChrono");
   BtnJouer.addEventListener("click", chargerMap);
   BtnJouerSansChrono.addEventListener("click", chargerMap);
 }
+//function qui permet d'initialiser la map
 function chargerMap(e) {
-  if (e.target.id == "lancerSansChrono") BoolChrono = false;
-  else BoolChrono = true;
-  e.stopPropagation();
+  if (e.target.id == "lancerSansChrono") AChrono = false;
+  else AChrono = true;
+  e.stopPropagation(); // éviter le bouillonement car plusieurs évenement click dans la map
+  document.getElementById("map").style.boxShadow = "0px 0px 22px 8px black";
   map = L.map("map", {
     center: [46.9343, 1.9],
-    zoom: 5.4,
+    zoom: 5.5,
     zoomControl: false,
   });
+  //annulation de tous les evenements qui permettent de manipuler la map
+  // car la map doit être fixé sur la france
   map.dragging.disable();
   map.touchZoom.disable();
   map.doubleClickZoom.disable();
   map.scrollWheelZoom.disable();
   map.boxZoom.disable();
   map.keyboard.disable();
+
   base = L.tileLayer(
     "https://stamen-tiles-{s}.a.ssl.fastly.net/toner-background/{z}/{x}/{y}{r}.{ext}",
     {
@@ -58,28 +58,37 @@ function chargerMap(e) {
       ext: "png",
     }
   ).addTo(map);
+  redimensionnement();
+  window.addEventListener("resize", redimensionnement);
   CommencerPartie();
 }
-
-function CommencerPartie() {
-  pointsPartie = 0;
-  recupVilles();
-  for (var i = 0; i < ville.length; i++) {
-    recupCoordVille(i);
+//fonction qui permet de faire le responsive de la map
+function redimensionnement() {
+  if (window.matchMedia("(min-width:780px)").matches) {
+    map.setZoom(5.5);
+  } else {
+    map.setZoom(5.4); //l'écart de zoom n'a pa pû etre mieux ajusté
   }
-  btnPopup.addEventListener("click", btnPopupContinuer);
-  document.getElementById("points").textContent = 0;
+}
+//function qui permet de récupérer les villes et leurs coordonné
+//puis de commencer la partie avec la fonction jouer
+function CommencerPartie() {
+  recupVilles();
+  var accueilJeu = document.getElementById("accueilJeu");
+  accueilJeu.style.display = "none"; //on cache l'accueil du jeu
+  pointsPartie = 0;
+  document.getElementById("points").textContent = pointsPartie;
   montrerbtn();
   jouer();
 }
+//function qui permet de montrer le bouton qui permet de recommencer la partie depuis le début
 function montrerbtn() {
   var recommencer = document.getElementById("recommencer");
   recommencer.style.display = "block";
   recommencer.addEventListener("click", btnPopupRejouer);
 }
-function pausePartie(e) {
-  e.stopPropagation();
-}
+//function avec requete ajax qui permet de récuperer les villes de la base de donner
+//puis appelle la fonction qui permet de récupérer les coordonnées des villes
 function recupVilles() {
   url = "./recupSQL.php";
   $.ajax({
@@ -90,13 +99,18 @@ function recupVilles() {
     url: url,
     success: function (retour) {
       ville = retour;
-      tailleVille = ville.length;
+      nbVilles = ville.length;
+      tabCoord = new Array();
+      for (var i = 0; i < ville.length; i++) {
+        recupCoordVille(i);
+      }
     },
     error: function () {
       alert("PB avec l'URL");
     },
   });
 }
+//function qui permet de stocker la longitude et la lagitude de chaques villes avec leur noms avec une api
 function recupCoordVille(i) {
   url =
     "https://nominatim.openstreetmap.org/search?q=" +
@@ -120,72 +134,106 @@ function recupCoordVille(i) {
     },
   });
 }
+
 function jouer() {
-  if (ville.length == 0) finJeu();
+  if (ville.length == 0)
+    finJeu(); //si le tableau est vide toutes les villes ont été traité donc fin du jeu
   else {
-    coup();
+    coup(); //sinon on passe à la ville suivante
   }
 }
-function finJeu() {
-  map.off("click", f);
-  popup.style.display = "block";
-  msg.innerHTML =
-    "<h1>Félicitations !</h1><h2>Vous avez obtenu " +
-    pointsPartie +
-    " points durant cette partie";
-  btnPopup.removeEventListener("click", btnPopupContinuer, true);
-  btnPopup.addEventListener("click", btnPopupRejouer);
-  btnPopup.textContent = "REJOUER";
-}
-function btnPopupRejouer(e) {
-  e.stopPropagation();
-  popup.style.display = "none";
-  btnPopup.textContent = "CONTINUER";
-  removeLayer();
-  btnPopup.removeEventListener("click", btnPopupRejouer, true);
-  CommencerPartie();
-}
+//fonction qui permet de demander à l'utilisateur une ville
 function coup() {
-  document.getElementById("manche").textContent =
-    tailleVille - ville.length + 1 + "/" + tailleVille;
-  MancheJouer = 0;
-  random = Math.floor(Math.random() * ville.length);
-  nomVille.textContent = ville[random].nom;
-  nomVille.style.display = "block !important";
-  if (BoolChrono) jauge();
-  map.on("click", f);
+  document.getElementById("manche").textContent = //affichage du numéro de la n-ième ville à deviner
+    nbVilles - ville.length + 1 + "/" + nbVilles;
+  random = Math.floor(Math.random() * ville.length); //tirage de la ville à deviner
+  var nomVille = document.getElementById("nomVille");
+  nomVille.textContent = ville[random].nom; //affichage du nom de la ville à deviner
+  nomVille.style.display = "block";
+  AJouer = false; //l'utilisateur n'a pas encore clicker
+  if (AChrono) {
+    //si l'utilisateur joue avec le chrono
+    clearInterval(id); //on supprime les intervalles qui ont pu etre créer à la manche anterieur
+    jauge(); //lancement du décompté de la jauge
+  }
+  map.addEventListener("click", clickMap); //activation de l'évenement de la map
 }
+//function qui permet de lancer le décompte de la jauge
 function jauge() {
-  const progressbar = document.querySelector("progress");
-  progressbar.style.display = "block";
-  progressbar.style.width = "100%";
-  const changeProgress = (progress) => {
-    if (MancheJouer == 0) progressbar.style.width = `${progress}%`;
+  const progressBar = document.getElementById("progressBar");
+  const containerProgressBar = document.getElementById("containerProgressBar");
+  containerProgressBar.style.display = "block"; //on affiche
+  progressBar.style.width = "100%";
+  progressBar.style.background = "yellow"; //au début elle est jaune
+  const changeWidth = function (i) {
+    if (AJouer == 0) {
+      progressBar.style.width = i + "%";
+      if (i == 60) progressBar.style.background = "orange";
+      if (i == 30) progressBar.style.background = "red";
+      if (i == 0) btnPopupContinuer();
+    }
   };
-  // for (var i = 0; i < 100; i++) {
-  //   if (MancheJouer == 0) {
-  //     btnPopupContinuer();
-  //     return;
-  //   } else setTimeout(() => changeProgress(100 - i), i * 10);
-  // }
-  /* change progress after 1 second (only for showcase) */
-  setTimeout(() => changeProgress(90), 1000);
-  setTimeout(() => changeProgress(80), 2000);
-  setTimeout(() => changeProgress(70), 3000);
-  setTimeout(() => changeProgress(60), 4000);
-  setTimeout(() => changeProgress(50), 5000);
-  setTimeout(() => changeProgress(40), 6000);
-  setTimeout(() => changeProgress(30), 7000);
-  setTimeout(() => changeProgress(20), 8000);
-  setTimeout(() => changeProgress(10), 9000);
-  setTimeout(() => changeProgress(0), 10000);
-  setTimeout(function () {
-    if (MancheJouer == 0) btnPopupContinuer();
-  }, 10000);
+  var i = 100; //pourcentage de la with
+  id = setInterval(function () {
+    //id qui permet de clear les intervalles créer à la manche anterieur
+    changeWidth(i--);
+  }, 100); //on décrément la width tout les dixièmes de secondes
 }
+//function qui permet de traiter le click du joueur
+function clickMap(e) {
+  map.removeEventListener("click", clickMap); //on désactive l'évenement pour éviter que l'utilisateur reclick
+  AJouer = true;
+  mark1 = L.marker([e.latlng.lat, e.latlng.lng], {
+    //on place le premier marker sur le click
+    draggable: false,
+  }).addTo(map);
+  var dist = getDistanceFromLatLonInKm(
+    //calcul de la distance entre les deux marqueurs
+    e.latlng.lat,
+    e.latlng.lng,
+    tabCoord[random].lat,
+    tabCoord[random].lon
+  );
+  setTimeout(function () {
+    //après une demi-seconde on place le marqueur de la ville et on dessine le cercle
+    mark2 = L.circle([e.latlng.lat, e.latlng.lng], dist * 1000, {
+      //le rayon est donné par dist
+      color: "rgb(159, 43, 161)",
+      weight: 5,
+      fillColor: "rgb(159, 43, 161)",
+    }).addTo(map);
+    mark3 = L.marker([tabCoord[random].lat, tabCoord[random].lon], {
+      draggable: false,
+    }).addTo(map);
+  }, 500);
 
+  var pointsManche = attribuerPoints(dist); //calcul des points gagnées
+  pointsPartie += pointsManche;
+  btnPopup.addEventListener("click", btnPopupContinuer);
+  setTimeout(function () {
+    //affichage du message après 2 secondes
+    popup.style.display = "block";
+    var msg = document.getElementById("msg");
+    msg.innerHTML =
+      "<h3 class='nb'>" +
+      (nbVilles - ville.length + 1) +
+      "/" +
+      nbVilles +
+      "</h3><h2 class='ville'>" +
+      ville[random].nom + //récuperation du nom
+      "</h2><img class='img' src=" +
+      ville[random].img + //récupération de la source de l'image
+      "><h2 class='distance'>Distance: " +
+      Math.floor(dist) +
+      "km</h2><h2 class='points'>Points: " +
+      pointsManche +
+      "</h2><h2 class='time'></h2>";
+    btnPopup.textContent = "CONTINUER";
+    document.getElementById("points").textContent = pointsPartie;
+  }, 2000);
+}
 function attribuerPoints(Distance) {
-  var tmp = points;
+  var points = 0;
   if (Distance > 400) points += 0;
   else if (Distance > 300) points += 50;
   else if (Distance > 200) points += 100;
@@ -195,58 +243,15 @@ function attribuerPoints(Distance) {
   else if (Distance > 10) points += 1600;
   else if (Distance > 5) points += 3200;
   else if (Distance >= 0) points += 6400;
-  return points - tmp;
+  return points;
 }
-function f(e) {
-  map.off("click", f);
-  MancheJouer = 1;
-  mark1 = L.marker([e.latlng.lat, e.latlng.lng], {
-    draggable: false,
-  }).addTo(map);
-  var dist = getDistanceFromLatLonInKm(
-    e.latlng.lat,
-    e.latlng.lng,
-    tabCoord[random].lat,
-    tabCoord[random].lon
-  );
-  dist *= 1000;
-  var pointsManche = attribuerPoints(dist / 1000);
-  pointsPartie += pointsManche;
-  setTimeout(function () {
-    mark2 = L.circle([e.latlng.lat, e.latlng.lng], dist, {
-      color: "red",
-      weight: 1,
-      fillColor: "blue",
-    }).addTo(map);
-    mark3 = L.marker([tabCoord[random].lat, tabCoord[random].lon], {
-      draggable: false,
-    }).addTo(map);
-  }, 500);
-  setTimeout(function () {
-    popup.style.display = "block";
-    msg.innerHTML =
-      "<h3 class='nb'>" +
-      (tailleVille - ville.length + 1) +
-      "/" +
-      tailleVille +
-      "</h3><h2 class='ville'>" +
-      ville[random].nom +
-      "</h2><img width='50%'class='img' src=" +
-      ville[random].img +
-      "><h2 class='distance'>Distance: " +
-      Math.floor(dist / 1000) +
-      "km</h2><h2 class='points'>Points: " +
-      pointsManche +
-      "</h2><h2 class='time'></h2>";
-    btnPopup.textContent = "CONTINUER";
-    document.getElementById("points").textContent = pointsPartie;
-  }, 2000);
-}
+//function qui permet de passer à la ville suivante
+//appelé lors du click sur le bouton
+//mais également lorsque l'utilisateur n'a pas clické et que le temps est écoulé si la jauge était activé
 function btnPopupContinuer(e) {
-  e.stopPropagation();
-  console.log("continuer");
-  removeLayer();
-  ville.splice(random, 1);
+  if (AJouer == 1) e.stopPropagation(); //on stoppe le bouillonement uniquement si la fonction a été appelé par le click du bouton
+  removeLayer(); //on supprime les markers posés
+  ville.splice(random, 1); //on supprime la ville des tableaux pour qu'elle ne passe qu'une seul fois
   tabCoord.splice(random, 1);
   popup.style.display = "none";
   jouer();
@@ -256,6 +261,28 @@ function removeLayer() {
   if (mark2 != null) map.removeLayer(mark2);
   if (mark3 != null) map.removeLayer(mark3);
 }
+//function de la fin du jeu
+function finJeu() {
+  map.off("click", clickMap);
+  btnPopup.removeEventListener("click", btnPopupContinuer);
+  btnPopup.addEventListener("click", btnPopupRejouer); //changement de fonction pour le click du bouton
+  popup.style.display = "block";
+  var msg = document.getElementById("msg"); //affichage du msg de la fin du jeu
+  msg.innerHTML =
+    "<h1>Félicitations !</h1><h2>Vous avez obtenu " +
+    pointsPartie +
+    " points durant cette partie";
+  btnPopup.textContent = "REJOUER";
+}
+function btnPopupRejouer(e) {
+  e.stopPropagation(); //on stoppe le bouilonnement des evenements
+  popup.style.display = "none";
+  btnPopup.textContent = "CONTINUER";
+  removeLayer();
+  btnPopup.removeEventListener("click", btnPopupRejouer);
+  CommencerPartie(); //on recommence la partie
+}
+//function qui permet de calculer la distance entre 2 coordonnées gps en km
 function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
   var R = 6371; // Radius of the earth in km
   var dLat = deg2rad(lat2 - lat1); // deg2rad below

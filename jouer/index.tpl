@@ -4,6 +4,7 @@
 <head>
     <title>PROJET WEB</title>
     <link rel="stylesheet" href="./styles/index.css">
+    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
         integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -16,7 +17,6 @@
 </head>
 
 <body>
-
     <header>
         <nav id="navbar">
             <div class="nav-container">
@@ -33,32 +33,28 @@
                     <a href="">
                         <li>se connecter</li>
                     </a>
-                    <a href="">
-                        <li></li>
-                    </a>
                 </ul>
             </div>
         </nav>
     </header>
-    <section class="map">
-        <h1 class="title">Bienvenue sur notre jeu géographique !</h1>
-        <div class="stat">
+    <section class="jeuContainer">
+        <div id="title"></div>
+        <div class="infosParties">
             <h2 id="manche"></h2>
             <h2 id="nomVille"></h2>
             <h2 id="points"></h2>
         </div>
-        <div id="file-Container">
-            <progress id="file"> </progress>
+        <div id="containerProgressBar">
+            <div id="progressBar">
+            </div>
         </div>
         <div id="map">
-            <div id="map-container">
-                <div class="container">
-                    <h2>Villes de</h2>
-                    <h1>France</h1>
-                    <p>Localisez les villes.<br> Vous avez 10 secondes par ville.</p>
-                    <button id="lancerAvecChrono">Jouer</button>
-                    <button id="lancerSansChrono">Jouer sans chrono</button>
-                </div>
+            <div id="accueilJeu">
+                <h2>Villes de</h2>
+                <h1>France</h1>
+                <p>Localisez les villes.<br> Vous avez 10 secondes par ville.</p>
+                <button id="lancerAvecChrono">Jouer</button>
+                <button id="lancerSansChrono">Jouer sans chrono</button>
             </div>
             <span id="recommencer"><i class="fa-solid fa-rotate-right"></i></span>
             <div id="popup">

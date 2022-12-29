@@ -1,23 +1,34 @@
-.map {
-  padding: 50px 0;
+.jeuContainer {
   width: 70%;
   margin: 30px auto;
-  padding: 50px;
+  padding: 25px 60px;
   border: 1px solid black;
   border-radius: 30px;
   position: relative;
-  box-shadow: 0px 0px 22px 8px rgba(41, 152, 255, 0.67);
-  .title {
+  border: none;
+  box-shadow: 0px 0px 22px 8px $color2;
+  @media screen and (max-width: 730px) {
+    padding: 25px;
+  }
+  #title {
     text-align: center;
-    color: rgba(41, 152, 255, 0.67);
+    color: $color2;
     letter-spacing: 2px;
     font-weight: 600;
     padding: 10px 0;
+    font-size: 2rem;
     text-transform: uppercase;
+    @media screen and (max-width: 1000px) {
+      font-size: 1.5rem;
+    }
+    @media screen and (max-width: 780px) {
+      font-size: 1.2rem;
+    }
   }
-  .stat {
+  .infosParties {
     display: flex;
     position: relative;
+    color: $color2;
     #nomVille {
       margin-left: 20px;
       margin-bottom: 15px;
@@ -31,15 +42,19 @@
       right: 0;
     }
   }
-  #file-container {
-    margin: 0 auto;
-    #file {
-      display: none;
+  #containerProgressBar {
+    display: none;
+    background: white;
+    width: 100%;
+    height: 20px;
+    border-radius: 30px;
+    margin-bottom: 10px;
+    box-shadow: 0px 3px 83px 8px rgba(0, 0, 0, 1);
+    #progressBar {
+      border-radius: 30px;
       width: 100%;
-      height: 15px;
-      color: orange;
-      border-color: black;
-      border-radius: 15px;
+      height: 100%;
+      background-color: rgba(243, 243, 39, 0.865);
     }
   }
   #map {
@@ -48,55 +63,75 @@
     z-index: 1;
     margin: auto auto;
     border-radius: 30px;
-    background: rgba(41, 152, 255, 0.67);
+    background: $color2;
     display: flex;
     align-items: center;
     justify-content: center;
-    #map-container {
+    box-shadow: 0px 0px 22px 8px #673ab7;
+    @media screen and (max-width: 780px) {
+      height: 50%;
+    }
+    #accueilJeu {
       width: 60%;
       margin: 0 auto;
-      color: white;
-      .container {
-        h2 {
-          text-align: center;
+      color: $color1;
+      h2 {
+        text-align: center;
+        @media screen and (max-width: 780px) {
+          font-size: 1rem;
         }
-        h1 {
-          text-transform: uppercase;
-          text-align: center;
-          font-size: 4rem;
-          font-weight: 700;
+      }
+      h1 {
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 4rem;
+        font-weight: 700;
+        @media screen and (max-width: 780px) {
+          font-size: 2rem;
         }
-        p {
-          padding: 80px 0 30px;
-          text-align: center;
-          font-size: 1.4rem;
+      }
+      p {
+        padding: 80px 0 30px;
+        text-align: center;
+        font-size: 1.4rem;
+        @media screen and (max-width: 780px) {
+          padding: 30px 10px;
+          font-size: 0.9rem;
         }
-        button {
-          cursor: pointer;
-          color: rgb(140, 71, 0);
-          background: rgb(255, 224, 54);
-          display: block;
-          margin: 0 auto;
-          margin-bottom: 10px;
-          transition: 0.4s ease-in-out;
-          &:hover {
-            transform: scale(1.05);
-            background: rgb(248, 236, 165);
-          }
+      }
+      button {
+        cursor: pointer;
+        color: $color2;
+        background: rgb(255, 224, 54);
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 10px;
+        transition: 0.4s ease-in-out;
+        &:hover {
+          transform: scale(1.05);
+          background: rgb(248, 236, 165);
         }
-        #lancerAvecChrono {
-          padding: 10px 80px;
-          font-size: 2.4rem;
-          font-weight: 800;
-          border-radius: 60px;
-          border: none;
+      }
+      #lancerAvecChrono {
+        padding: 10px 80px;
+        font-size: 2.4rem;
+        font-weight: 800;
+        border-radius: 60px;
+        border: none;
+        @media screen and (max-width: 730px) {
+          padding: 8px 60px;
+          font-size: 1.7rem;
         }
-        #lancerSansChrono {
-          padding: 10px 30px;
-          font-size: 1.5rem;
-          font-weight: 700;
-          border-radius: 60px;
-          border: none;
+      }
+      #lancerSansChrono {
+        padding: 10px 30px;
+        font-size: 1.5rem;
+        font-weight: 700;
+        border-radius: 60px;
+        border: none;
+        @media screen and (max-width: 730px) {
+          padding: 7px 20px;
+          font-size: 1rem;
         }
       }
     }
@@ -130,8 +165,14 @@
       transition: 2s ease-in-out;
       border-radius: 25px;
       letter-spacing: 2px;
-      color: rgba(41, 152, 255, 0.67);
-      background: rgb(241, 179, 179);
+      color: $color1;
+      background: $color2;
+      h1,
+      h2 {
+        @media screen and (max-width: 780px) {
+          font-size: 0.8rem;
+        }
+      }
       img {
         height: 90%;
         width: 90%;
@@ -140,8 +181,8 @@
       button {
         margin: 10px;
         padding: 10px 20px;
-        color: rgb(241, 179, 179);
-        background: rgba(41, 152, 255, 0.67);
+        color: $color2;
+        background: $color1;
         font-size: 1.5rem;
         font-weight: 700;
         transition: 0.4s ease-in-out;
@@ -150,7 +191,12 @@
         cursor: pointer;
         &:hover {
           transform: scale(1.05);
-          background: rgba(41, 152, 255, 0.813);
+        }
+        @media screen and (max-width: 780px) {
+          font-size: 1rem;
+          font-weight: 600;
+          margin: 5px;
+          padding: 5px 10;
         }
       }
     }

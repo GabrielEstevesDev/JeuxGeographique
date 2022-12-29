@@ -1,19 +1,38 @@
 #navbar {
-  background: rgba(41, 152, 255, 0.67);
+  background: $color2;
 }
 #navbar .nav-container {
   width: 80%;
   margin: 0 auto;
+  @media screen and (max-width: 830px) {
+    width: 85%;
+  }
+  @media screen and (max-width: 700px) {
+    width: 95%;
+  }
 }
 #navbar ul {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 #navbar ul li {
-  color: rgb(241, 179, 179);
+  color: $color1;
   padding: 15px;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 600;
+  transition: 0.4s;
+  &:hover {
+    color: $color2;
+    background: $color1;
+  }
+  @media screen and (max-width: 830px) {
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 10px;
+  }
+  @media screen and (max-width: 700px) {
+    font-size: 0.8rem;
+  }
 }
