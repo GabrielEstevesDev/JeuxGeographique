@@ -28,9 +28,9 @@
     <div>
         <section>
             <h1 class="Titre" >Statistiques</h1>
-            <p>Meilleur score</p>
+            <h3>Meilleur score</h3>
             <div><?php echo $meilleurScore; ?><div>
-            <p>Score total</p>
+            <h3>Score total</h3>
             <div><?php echo $scoreTotal; ?><div>
             <br><br><br><br><br>
         </section>
