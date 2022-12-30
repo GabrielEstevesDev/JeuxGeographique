@@ -46,7 +46,7 @@
                 <input  class="BtnInput" type="submit" value="Envoyer" id="submitMail" disabled="true">
                 <div id="msgMailc"></div>
             </form>
-            <div><?php echo $msgMail; ?></div>
+            <div><?php echo $msgMail; $_SESSION['msgMail'] = ''; ?></div>
             <br><br>
         </section>
 
@@ -63,7 +63,7 @@
             <input class="BtnInput" type="submit" value="Envoyer" id="submitMdp" disabled>
             <div id="msgMdpc"></div>
             </form>
-            <div><?php echo $msgMdp; ?></div>
+            <div><?php echo $msgMdp; $_SESSION['msgMdp'] = ''; ?></div>
             <br><br>
         </section>
 
@@ -94,7 +94,7 @@
                 <label for="friend">Ajouter un ami</label><br>
                 <input type="text" id="friend" name="friend" value="">
                 <input class="BtnInput" type="submit" value="Ajouter" id="addFriend">
-                <div><?php echo $msgFriend ?></div>
+                <div><?php echo $msgFriend; $_SESSION['msgFriend'] = '';?></div>
             </form>
             <?php
                 if ($requetes != NULL) {

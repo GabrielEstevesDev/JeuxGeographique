@@ -47,7 +47,7 @@ if($id == NULL) {
 	}
 
 	function changeMail($id,$email) {
-		require('../connectSQL.php'); //$pdo est défini dans ce fichier
+		require('../../connectSQL.php'); //$pdo est défini dans ce fichier
 		$sql="CALL updateMail(:id,:mail)";
 		try {
 			$commande = $pdo->prepare($sql);
