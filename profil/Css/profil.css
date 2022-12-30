@@ -17,6 +17,9 @@ section{
     border: none;
     box-shadow: 0px 0px 22px 8px rgb(159, 43, 161);
 }
+.statistiques div, .statistiques h3,h2{
+    font-size: 1.6rem;
+}
 body {
     background: wheat;
   }
@@ -41,6 +44,7 @@ tr.contact:nth-child(even) {
 
 td {
     line-height: 20px;
+    font-size: 1rem;
     padding: 5px;
     width : 5em;
     border:  1px solid rgb(159, 43, 161) ;
@@ -49,7 +53,7 @@ td {
 
 td:hover {background-color: #fff;}
 
-th {font-size: 100%;
+th {font-size: 1;
     line-height: 20px;
     width : 5em;
     text-align: left;
@@ -57,6 +61,7 @@ th {font-size: 100%;
 }
 
 .Titre{
+    padding-top: 20px;
     text-align: center;
     width: 60%;
     margin : 0 auto;
@@ -80,7 +85,7 @@ th {font-size: 100%;
 
 .form{
     text-align: center;
-    width: 50%;
+    width: 60%;
     margin: 30px auto;
     padding: 25px 60px;
     border: 1px solid black;
@@ -91,7 +96,8 @@ th {font-size: 100%;
 }
 
 input{
-    margin: 10px;
+    display: block;
+    margin: 10px auto;
     border: 1px solid rgb(159, 43, 161);
     padding: 5px;
 }
@@ -99,7 +105,7 @@ input{
     max-width: 100%;
 }
 .td{
-   font-size: 1rem ;
+   font-size: 1.3rem ;
 }
 .supprimer{
     font-size: 1rem;
@@ -107,7 +113,13 @@ input{
 th{
     font-size: 1rem;
 }
-
+#msgAmi,#msgMailc,#msgMdpc{
+    margin-top: 20px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    padding: 10px;
+    text-transform: uppercase;
+}
 @media screen and (max-width: 600px) {
     input{
         width: 80%;
@@ -118,14 +130,11 @@ th{
 }
 
 @media screen and (max-width: 1300px) {
-    .td{
-        font-size: 0.8rem ;
-     }
      .supprimer{
          font-size: 0.8rem;
      }
-     th{
-         font-size: 0.8rem;
+     .td{
+         font-size: 0.9rem;
      }
      section{
         width: 80%;
@@ -134,11 +143,14 @@ th{
         width: 70%;
      }
 }
-@media screen and (max-width: 700px) {
-
+@media screen and (max-width: 900px) {
+    .td{
+        font-size: 0.8rem;
+    }
     section{
-       width: 100%;
+       width: 95%;
     }
 }
+
 
 

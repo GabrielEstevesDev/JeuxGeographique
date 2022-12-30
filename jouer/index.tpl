@@ -61,6 +61,8 @@
                         echo '<button id="lancerSansChrono">Jouer sans chrono</button>';
                     } else {
                         echo '<a href="../connexion/ident.php"><button id="seConnecter">Connectez-vous pour jouer</button></a>';
+                        echo '<button style="display:none;"id="lancerAvecChrono">Jouer</button>';
+                        echo '<button style="display:none;" id="lancerSansChrono">Jouer sans chrono</button>';
                     }
                 ?>
             </div>

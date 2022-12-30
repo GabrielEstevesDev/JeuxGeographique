@@ -1,4 +1,10 @@
+@font-face {
+  font-family: "InterM";
+  src: url(./fonts/Inter-Medium.ttf);
+}
+
 #navbar {
+
   background: rgb(159, 43, 161);
 }
 
@@ -27,6 +33,7 @@ a{
 }
 
 #navbar ul li {
+  font-family: "InterM",serif;
   color: wheat;
   padding: 15px;
   text-transform: uppercase;

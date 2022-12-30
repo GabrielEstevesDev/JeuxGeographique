@@ -34,7 +34,6 @@
         </nav>
     </header>
     <div>
-        <br><br><br><br><br>
         <h1 class="Titre">Classement par meilleur score</h1>
         <table class="classement">
             <tr>
@@ -52,7 +51,6 @@
                 ?>
             </tr>
         </table>
-        <br><br><br><br><br>
         <h1 class="Titre">Classement par score total</h1>
         <table class="classement">
             <tr>

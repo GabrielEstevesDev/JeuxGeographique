@@ -187,7 +187,7 @@ function clickMap(e) {
     coordVille.lat,
     coordVille.lon
   );
-  console.log("dist " + dist);
+
   setTimeout(function () {
     //après une demi-seconde on place le marqueur de la ville et on dessine le cercle
     mark2 = L.circle([e.latlng.lat, e.latlng.lng], dist * 1000, {
@@ -307,12 +307,7 @@ function envoyerMeilleurScore() {
     data: data,
     dataType: "text",
     url: url,
-    success: function (retour) {
-      console.log("success");
-      // console.log(retour);
-      // console.log(data);
-      console.log(retour);
-    },
+    success: function () {},
     error: function () {
       alert("PB avec l'URL");
     },

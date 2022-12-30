@@ -16,7 +16,7 @@ if($id == NULL) {
 		$_SESSION['msgMail'] = "Ce mail est déjà utilisé";
 	} else {
 		changeMail($id,$email);
-		$_SESSION['msgMail'] = "adresse mail a été changée";
+		$_SESSION['msgMail'] = "Votre adresse mail a bien été modifiée";
 	}
 
 	header("Location: ../profil.php");

@@ -86,7 +86,7 @@ body {
 }
 .jeuContainer #map {
   position: relative;
-  height: 70%;
+  height: 80%;
   z-index: 1;
   margin: auto auto;
   border-radius: 30px;

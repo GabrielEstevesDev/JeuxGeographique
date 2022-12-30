@@ -26,13 +26,12 @@
     </header>
     <h1 class="Titre">Bienvenue <?php echo $login ?></h1>
     <div>
-        <section>
+        <section class="statistiques">
             <h1 class="Titre" >Statistiques</h1>
             <h3>Meilleur score</h3>
             <div><?php echo $meilleurScore; ?><div>
             <h3>Score total</h3>
             <div><?php echo $scoreTotal; ?><div>
-            <br><br><br><br><br>
         </section>
 
         <section>
@@ -46,7 +45,7 @@
                 <input  class="BtnInput" type="submit" value="Envoyer" id="submitMail" disabled="true">
                 <div id="msgMailc"></div>
             </form>
-            <div><?php echo $msgMail; $_SESSION['msgMail'] = ''; ?></div>
+            <div class="msg"><?php echo $msgMail; $_SESSION['msgMail'] = ''; ?></div>
             <br><br>
         </section>
 
@@ -63,7 +62,7 @@
             <input class="BtnInput" type="submit" value="Envoyer" id="submitMdp" disabled>
             <div id="msgMdpc"></div>
             </form>
-            <div><?php echo $msgMdp; $_SESSION['msgMdp'] = ''; ?></div>
+            <div class="msg"><?php echo $msgMdp; $_SESSION['msgMdp'] = ''; ?></div>
             <br><br>
         </section>
 
@@ -94,7 +93,7 @@
                 <label for="friend">Ajouter un ami</label><br>
                 <input type="text" id="friend" name="friend" value="">
                 <input class="BtnInput" type="submit" value="Ajouter" id="addFriend">
-                <div><?php echo $msgFriend; $_SESSION['msgFriend'] = '';?></div>
+                <div id="msgAmi"><?php echo $msgFriend; $_SESSION['msgFriend'] = '';?></div>
             </form>
             <?php
                 if ($requetes != NULL) {

@@ -4,9 +4,7 @@
         session_start(); 
     } 
 
-    if(isset($_SESSION['id']) && $_SESSION['id'] != NULL) {
-    	header("Location: ../profil/profil.php");
-    }
+
 	
 	$login =  isset($_POST['cologin'])?($_POST['cologin']):'';
 	$mdp =  isset($_POST['comdp'])?($_POST['comdp']):'';
@@ -27,7 +25,7 @@
 	    	$msg = "Vous êtes connectés";
 			$_SESSION['id'] = $resId;
 			$_SESSION['login'] = $login;
-			$url = "../profil/profil.php";
+			$url = "../jouer/index.php";
 			header("Location:" . $url) ;
 		}
 	}	
