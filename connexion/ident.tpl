@@ -44,7 +44,7 @@
             <input type="password" id="comdp" name="comdp" value="" required><br><br>
             <input class="BtnInput" type="submit" value="Connexion">
         </form>
-        <div><?php echo $msg;?></div>
+        <div class="msg"><?php echo $msg;?></div>
     </div>
 
     <div class="form">
@@ -58,7 +58,7 @@
             <input type="password" id="simdp" name="simdp" value="" required><br><br>
             <input class="BtnInput" type="submit" value="Inscription">
         </form>
-        <div><?php echo $msgAcc;?></div>
+        <div class="msg"><?php echo $msgAcc;?></div>
     </div>
 
 </body>

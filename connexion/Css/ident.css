@@ -32,6 +32,7 @@ a{
     text-decoration: none;
 }
 .BtnInput{
+    cursor: pointer;
     color: rgb(159, 43, 161);
     border-radius: 30px;
     padding: 10px;
@@ -42,7 +43,14 @@ a{
     letter-spacing: 2px;
     font-size: 600;
 }
-
+.msg{
+    color: rgb(159, 43, 161);
+    margin-top: 20px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    padding: 10px;
+    text-transform: uppercase;
+}
 .BtnInput:hover{
     color:wheat  ;
     background-color: rgb(159, 43, 161) ;

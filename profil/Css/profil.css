@@ -72,6 +72,7 @@ th {font-size: 1;
 }
 
 .BtnInput{
+    cursor: pointer;
     color: rgb(159, 43, 161);
     border-radius: 30px;
     padding: 10px;
