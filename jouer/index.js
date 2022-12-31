@@ -227,6 +227,7 @@ function clickMap(e) {
   }, 2000);
 }
 function attribuerPoints(Distance) {
+  //distance en km
   var points = 0;
   if (Distance > 400) points += 0;
   else if (Distance > 300) points += 50;
